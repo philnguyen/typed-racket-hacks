@@ -3,7 +3,8 @@
 (define collection "typed-racket-hacks")
 
 (define deps '("base"
-               "typed-racket-lib"))
+               "typed-racket-lib"
+               "set-extras"))
 
 (define pkg-desc "Unsafe hacks for Typed Racket")
 
