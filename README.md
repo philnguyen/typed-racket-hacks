@@ -17,3 +17,12 @@ raco pkg install typed-racket-hacks
 ```racket
 procedure-rename : (∀ (B A ...) (A ... → B) Symbol → (A ... → B))
 ```
+
+#### Macros
+
+```racket
+for/set  ; renaming of `for/set:`
+for*/set ; renaming of `for*/set`
+for/seteq
+for*/seteq
+```
