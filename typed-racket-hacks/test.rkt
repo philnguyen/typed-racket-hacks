@@ -5,5 +5,7 @@
 (module+ test
   (define (id x) x)
   (define id1 (procedure-rename id 'identity))
-  (define id2 (cast id1 (Any -> Any)))
-  (id2 42))
+  (id1 42)
+
+  (define (sec x y) y)
+  ((procedure-rename sec 'second) 42 43))
