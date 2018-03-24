@@ -35,4 +35,12 @@
                       (seteq 4 5
                              (* 2 4) (* 2 5)
                              (* 3 4) (* 3 5))))
+
+  (check-equal? (for/first : (Option String) ([i '(1 2 3 "x")]
+                                              #:when (and (integer? i) (even? i)))
+                  (number->string i))
+                "2")
+  (check-equal? (for/first : #f ([i '()])
+                  (error "doesn't get here"))
+                #f)
   )
