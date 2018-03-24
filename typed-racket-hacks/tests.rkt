@@ -36,6 +36,9 @@
                              (* 2 4) (* 2 5)
                              (* 3 4) (* 3 5))))
 
+  (check-false (for*/and ([i '(1 2 3 "x")]) (integer? i)))
+  (check-true (for*/or ([i '(1 2 3 "x")]) (integer? i)))
+
   (check-equal? (for/first : (Option String) ([i '(1 2 3 "x")]
                                               #:when (and (integer? i) (even? i)))
                   (number->string i))

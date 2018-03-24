@@ -2,7 +2,10 @@
 
 (require typed/racket/unsafe
          racket/set
-         set-extras)
+         set-extras
+         (for-syntax racket/base
+                     racket/syntax
+                     syntax/parse))
 
 (unsafe-require/typed/provide racket/base
   [procedure-rename (∀ (B A ...) (A ... → B) Symbol → (A ... → B))])
@@ -31,15 +34,17 @@
 
 ;; Can't really do for*/or in TR despite annotations for some reason
 (define-syntax -for*/or
-  (syntax-rules (:)
-    [(_ : T (for-clauses ...) body ...)
-     (for*/fold ([acc : T #f]) (for-clauses ...)
-       (or acc (let () body ...)))]))
+  (syntax-parser
+    [(_ (~optional (~seq (~literal :) T) #:defaults ([T #'Boolean]))
+        (for-clauses ...) body ...)
+     #'(for*/fold ([acc : T #f]) (for-clauses ...)
+         (or acc (let () body ...)))]))
 (define-syntax -for*/and
-  (syntax-rules (:)
-    [(_ : T (for-clauses ...) body ...)
-     (for*/fold ([acc : T #t]) (for-clauses ...)
-       (and acc (let () body ...)))]))
+  (syntax-parser
+    [(_ (~optional (~seq (~literal :) T) #:defaults ([T #'Boolean]))
+        (for-clauses ...) body ...)
+     #'(for*/fold ([acc : T #t]) (for-clauses ...)
+         (and acc (let () body ...)))]))
 (define-syntax -for*/first
   (syntax-rules (:)
     [(_ : T (for-clauses ...) body ...)
