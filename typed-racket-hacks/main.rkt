@@ -3,6 +3,7 @@
 (require typed/racket/unsafe
          racket/set
          set-extras
+         "unsafe.rkt"
          (for-syntax racket/base
                      racket/syntax
                      syntax/parse))
@@ -17,7 +18,8 @@
  (rename-out [-for*/or for*/or]
              [-for*/and for*/and]
              [-for*/first for*/first]
-             [-for/first for/first]))
+             [-for/first for/first])
+ (rename-out [unsafe-procedure-rename procedure-rename]))
 
 (define-syntax-rule (make-form name fold-form)
   (define-syntax name
@@ -54,3 +56,5 @@
      (for/fold ([acc : T #f]) (for-clauses ...)
        #:final #t
        body ...)]))
+
+(define unsafe-procedure-rename (unsafe-cast procedure-rename (∀ (B A ...) (A ... → B) Symbol → (A ... → B))))

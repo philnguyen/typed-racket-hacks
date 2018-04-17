@@ -12,7 +12,7 @@ raco pkg install typed-racket-hacks
 
 ### Current features
 
-#### Typed bindings
+#### Typed Bindings
 
 ```racket
 procedure-rename : (∀ (B A ...) (A ... → B) Symbol → (A ... → B))
@@ -25,4 +25,11 @@ for/set  ; renaming of `for/set:`
 for*/set ; renaming of `for*/set`
 for/seteq
 for*/seteq
+```
+
+#### Unsafe macros
+
+```racket
+(require typed-racket-hacks/unsafe)
+(unsafe-cast 42 String) ; ==> 42 : String
 ```

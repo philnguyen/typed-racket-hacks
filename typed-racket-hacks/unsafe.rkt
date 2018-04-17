@@ -1,7 +1,6 @@
 #lang typed/racket/base
 
-(provide unsafe-cast
-         (rename-out [unsafe-procedure-rename procedure-rename]))
+(provide unsafe-cast)
 
 (require typed/racket/unsafe)
 
@@ -9,4 +8,3 @@
   [(values unsafe-values) (∀ (X) (Any → X))])
 
 (define-syntax-rule (unsafe-cast x T) ((inst unsafe-values T) x))
-(define unsafe-procedure-rename (unsafe-cast procedure-rename (∀ (B A ...) (A ... → B) Symbol → (A ... → B))))
