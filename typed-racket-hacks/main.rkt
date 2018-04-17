@@ -7,9 +7,6 @@
                      racket/syntax
                      syntax/parse))
 
-(unsafe-require/typed/provide racket/base
-  [procedure-rename (∀ (B A ...) (A ... → B) Symbol → (A ... → B))])
-
 (provide
  ;; TR for some reason only have obsolete names for set comprehensions
  (rename-out [for/set: for/set]
