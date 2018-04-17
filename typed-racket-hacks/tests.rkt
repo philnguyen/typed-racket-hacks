@@ -1,6 +1,7 @@
 #lang typed/racket/base
 
-(require "main.rkt")
+(require "main.rkt"
+         "unsafe.rkt")
 
 (module+ test
   (require (only-in racket/set set seteq)
