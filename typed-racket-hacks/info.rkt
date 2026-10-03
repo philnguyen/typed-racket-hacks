@@ -9,3 +9,4 @@
 (define pkg-desc "Unsafe hacks for Typed Racket")
 
 (define pkg-authors '(pcn))
+(define build-deps '("rackunit-typed"))
